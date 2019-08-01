@@ -19,28 +19,28 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String email;
 	private String documento;
 	private Integer tipo;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
-	
+
 	@ElementCollection
-	@CollectionTable(name="TELEFONE")
+	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<String>();
-	
+
 	@JsonBackReference
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<Pedido>();
-	
+
 	public Cliente(Integer id, String nome, String email, String documento, TipoCliente tipo) {
 		super();
 		this.id = id;
@@ -49,68 +49,88 @@ public class Cliente implements Serializable{
 		this.documento = documento;
 		this.tipo = tipo.getCod();
 	}
+
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getDocumento() {
 		return documento;
 	}
+
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+
 	public TipoCliente getTipo() {
 		return TipoCliente.toEnum(this.tipo);
 	}
+
 	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
 	}
+
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
+
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
 	public Set<String> getTelefone() {
 		return telefones;
 	}
+
 	public void setTelefone(Set<String> telefone) {
 		this.telefones = telefone;
 	}
-	
+
 	public Set<String> getTelefones() {
 		return telefones;
 	}
+
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
+
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,6 +138,7 @@ public class Cliente implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -134,5 +155,5 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

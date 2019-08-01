@@ -14,16 +14,16 @@ import com.example.demo.domain.enums.EstadoPagamento;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public class Pagamento implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Integer id;
 	private Integer estado;
-	
+
 	@JsonBackReference
 	@OneToOne
-	@JoinColumn(name="pedidoID")
+	@JoinColumn(name = "pedidoID")
 	@MapsId
 	private Pedido pedido;
 
@@ -86,6 +86,5 @@ public class Pagamento implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }

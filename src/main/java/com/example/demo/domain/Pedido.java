@@ -21,31 +21,30 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Pedido implements Serializable{
+public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date instante;
-	
+
 	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
-	
+
 	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name="clienteID")
+	@JoinColumn(name = "clienteID")
 	private Cliente cliente;
-	
+
 	@ManyToOne
-	@JoinColumn(name="EnderecoDeEntregaID")
+	@JoinColumn(name = "EnderecoDeEntregaID")
 	private Endereco enderecoDeEntrega;
-	@OneToMany(mappedBy="id.pedido")
+	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
-	
+
 	public Pedido() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,13 +57,15 @@ public class Pedido implements Serializable{
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
-	public List<Produto> getProdutos(){
+
+	public List<Produto> getProdutos() {
 		List<Produto> lista = new ArrayList<Produto>();
-		for(ItemPedido x : itens) {
+		for (ItemPedido x : itens) {
 			lista.add(x.getProduto());
 		}
 		return lista;
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -137,6 +138,5 @@ public class Pedido implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
 }
