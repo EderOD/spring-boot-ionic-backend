@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.example.demo.services.exceptions.ObjectNotFoundException;
 public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
+	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -38,5 +40,10 @@ public class CategoriaService {
 		catch(DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que tenha produtos.");
 		}
+	}
+	
+	public List <Categoria> findAll() {
+		List<Categoria> list = repo.findAll();
+		return list;
 	}
 }
