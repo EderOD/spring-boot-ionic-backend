@@ -46,8 +46,8 @@ public class Cliente implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.documento = documento;
-		this.tipo = tipo.getCod();
+		this.documento = documento == null ? null : documento;
+		this.tipo = tipo == null ? null : tipo.getCod();
 	}
 
 	public Cliente() {
@@ -84,7 +84,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setDocumento(String documento) {
-		this.documento = documento;
+		this.documento = documento == null ? null : documento;
 	}
 
 	public TipoCliente getTipo() {
@@ -92,7 +92,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCod();
+		this.tipo = tipo == null ? null: tipo.getCod();
 	}
 
 	public List<Endereco> getEnderecos() {
