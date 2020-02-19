@@ -98,7 +98,7 @@ public class CursomcApplication implements CommandLineRunner{
 	     
 	     Cliente cli1 = new Cliente(null,"Maria Silva","maria@gmail.com","36378912377",TipoCliente.PESSOAFISICA);
 	     
-	     cli1.getTelefone().addAll(Arrays.asList("27363323","93838393"));
+	     cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
 	     
 	     Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cli1, cid1);
 	     Endereco e2 = new Endereco(null,"Avenida Matos", "105", "Sala 800", "Centro","38777012", cli1,cid2);
