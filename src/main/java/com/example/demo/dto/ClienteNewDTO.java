@@ -2,20 +2,47 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.example.demo.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Email(message="Email Inválido")
 	private String email;
-	private String documento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	private String cpfOuCnpj;
+	
+	
 	private Integer tipo;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
+	
 	private String complemento;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String bairro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cep;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
@@ -42,12 +69,12 @@ public class ClienteNewDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getDocumento() {
-		return documento;
+	public String getcpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setcpfOuCnpj(String documento) {
+		this.cpfOuCnpj = documento;
 	}
 
 	public Integer getTipo() {
